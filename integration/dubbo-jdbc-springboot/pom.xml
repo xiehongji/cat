@@ -8,10 +8,15 @@
         <version>0.0.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <repositories>
+        <repository>
+            <id>unidal.releases</id>
+            <url>http://unidal.org/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
     <groupId>com.dianping.cat</groupId>
     <artifactId>dubbo-jdbc-springboot</artifactId>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <dependencies>
         <dependency>
             <groupId>com.dianping.cat</groupId>
@@ -29,25 +34,29 @@
             <version>5.1.8.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>2.1.6.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.1.6.RELEASE</version>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.1.19</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>2.5.6.SEC03</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.unidal.framework</groupId>
+            <artifactId>foundation-service</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
         </dependency>
     </dependencies>
 
