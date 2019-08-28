@@ -4,11 +4,11 @@ package com.taoguba.config;
 import com.dianping.cat.Cat;
 import com.dianping.cat.message.Message;
 import com.dianping.cat.message.Transaction;
+import com.taoguba.spring.NativeJdbcExtractor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.jdbc.support.nativejdbc.NativeJdbcExtractor;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
