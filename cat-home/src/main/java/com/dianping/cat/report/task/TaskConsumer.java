@@ -133,5 +133,10 @@ public abstract class TaskConsumer implements org.unidal.helper.Threads.Task {
 
 	protected abstract boolean updateDoingToFailure(Task todo);
 
+	/**
+	 * 修改任务 状态，改为正在进行
+	 * @param todo
+	 * @return
+	 */
 	protected abstract boolean updateTodoToDoing(Task todo);
 }

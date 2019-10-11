@@ -8,7 +8,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>cat-client</artifactId>
-	<version>3.0.3</version>
+	<version>3.0.0</version>
 	<name>cat-client</name>
 	<packaging>jar</packaging>
 	<dependencies>
