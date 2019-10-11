@@ -42,6 +42,10 @@ public abstract class TaskConsumer implements org.unidal.helper.Threads.Task {
 
 	private volatile boolean m_stopped = false;
 
+	/**
+	 * 获取当前系统时间的分钟，大于等于10分为true，小于10分为false
+	 * @return
+	 */
 	public boolean checkTime() {
 		Calendar cal = Calendar.getInstance();
 		int minute = cal.get(Calendar.MINUTE);
@@ -76,6 +80,7 @@ public abstract class TaskConsumer implements org.unidal.helper.Threads.Task {
 		String localIp = getLoaclIp();
 		while (m_running) {
 			try {
+				//当前时间大于等于10分时才会进入程序
 				if (checkTime()) {
 					Task task = findDoingTask(localIp);
 					if (task == null) {
@@ -85,6 +90,7 @@ public abstract class TaskConsumer implements org.unidal.helper.Threads.Task {
 					if (task != null) {
 						try {
 							task.setConsumer(localIp);
+							//判断任务的状态是否为2，正在执行中
 							if (task.getStatus() == TaskConsumer.STATUS_DOING || updateTodoToDoing(task)) {
 								int retryTimes = 0;
 								while (!processTask(task)) {
@@ -92,12 +98,15 @@ public abstract class TaskConsumer implements org.unidal.helper.Threads.Task {
 									if (retryTimes < MAX_TODO_RETRY_TIMES) {
 										taskRetryDuration();
 									} else {
+										//失败次数为1时，即修改任务状态为失败
 										updateDoingToFailure(task);
 										again = true;
 										break;
 									}
 								}
+								//again 为false 时，代表任务正常执行完毕
 								if (!again) {
+									//任务结束，修改状态
 									updateDoingToDone(task);
 								}
 							}
@@ -109,6 +118,7 @@ public abstract class TaskConsumer implements org.unidal.helper.Threads.Task {
 					}
 				} else {
 					try {
+						//出错睡眠1分钟
 						Thread.sleep(60 * 1000);
 					} catch (InterruptedException e) {
 						// Ignore

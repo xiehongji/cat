@@ -103,12 +103,15 @@ public class DefaultTaskConsumer extends TaskConsumer {
 
 	@Override
 	protected void taskRetryDuration() {
+		//线程挂起2秒
 		LockSupport.parkNanos(2L * 1000 * 1000 * 1000);// sleep 10 sec
 	}
 
 	@Override
 	protected boolean updateDoingToDone(Task doing) {
+		//状态设为3，任务完成
 		doing.setStatus(STATUS_DONE);
+		//设置任务结束时间
 		doing.setEndDate(new Date());
 
 		try {
@@ -132,12 +135,17 @@ public class DefaultTaskConsumer extends TaskConsumer {
 		}
 	}
 
+	/**
+	 * 修改任务的状态，改为正在进行
+	 * @param todo
+	 * @return
+	 */
 	@Override
 	protected boolean updateTodoToDoing(Task todo) {
 		todo.setStatus(STATUS_DOING);
 		todo.setConsumer(NetworkInterfaceManager.INSTANCE.getLocalHostAddress());
+		//任务开始时间
 		todo.setStartDate(new Date());
-
 		try {
 			return m_taskDao.updateTodoToDoing(todo, TaskEntity.UPDATESET_FULL) == 1;
 		} catch (DalException e) {
